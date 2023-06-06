@@ -1,5 +1,7 @@
 package com.cursoceat.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Alumno {
@@ -16,12 +18,25 @@ public class Alumno {
     this.id=id;
     }
 
-    public Alumno(int id, String nombre, String curso, float media, Date fNacimiento) {
+    public Alumno(String nombre, String curso, float media, String fNacimiento) throws  ParseException{
+        setNombre(nombre);
+        setCurso(curso);
+        this.media = media;
+        //dale formato a la fecha
+        SimpleDateFormat formato=new SimpleDateFormat( "yyyy-MM-dd");
+
+        this.fNacimiento =formato.parse(fNacimiento);
+    }
+
+    public Alumno(int id, String nombre, String curso, float media, String fNacimiento)  throws ParseException {
         this.id = id;
         setNombre(nombre);
         setCurso(curso);
         this.media = media;
-        this.fNacimiento = fNacimiento;
+        //dale formato a la fecha
+        SimpleDateFormat formato=new SimpleDateFormat( "yyyy-MM-dd");
+
+        this.fNacimiento =formato.parse(fNacimiento);//hay que agregar un ParseException para evitar el error
     }
 
         //metodo para delimitar caracteres en nombre
